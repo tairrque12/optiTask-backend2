@@ -28,7 +28,7 @@ public class RobotRepositoryTest {
 
         //Check that the receipt has an ID on it.
         assertThat(saved.getId()).isNotNull();
-        //Check that what I put in the DB is exactly what i put in.
+        //Check that what I put in the DB is exactly what I put in.
         assertThat(saved.getName()).isEqualTo("Optimus");
     }
 }
