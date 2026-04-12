@@ -1,0 +1,10 @@
+services:
+  postgres:
+    image: postgres:latest
+    container_name: optitask-postgres
+    environment:
+      POSTGRES_USER: optitask
+      POSTGRES_PASSWORD: optitask
+      POSTGRES_DB: optitask
+    ports:
+      - "5435:5432"
