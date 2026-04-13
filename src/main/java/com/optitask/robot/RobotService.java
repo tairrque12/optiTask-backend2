@@ -16,4 +16,9 @@ public class RobotService {
     public List<Robot>getAllRobots(){
         return robotRepository.findAll();
     }
+
+    public Robot getRobotById(Long id) {
+        return robotRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Robot not found"));
+    }
 }
