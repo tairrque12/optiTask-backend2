@@ -31,6 +31,5 @@ public class CustomerServiceTest {
         assertThat(saved.getEmail()).isEqualTo("tbaker1312@gmail.com");
         assertThat(saved.getLastName()).isEqualTo("Baker");
 
-
     }
 }
