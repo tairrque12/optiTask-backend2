@@ -48,6 +48,16 @@ public class Reservation {
         this.totalPrice = totalPrice;
     }
 
+    //WITHOUT PRICE SO TOTAL PRICE CAN CALCULATE
+    public Reservation(Customer customer, Task task, String location, Integer duration) {
+        this.customer = customer;
+        this.task = task;
+        this.location = location;
+        this.duration = duration;
+    }
+
+
+
     //GETTERS & SETTERS
     public Long getId() {
         return id;
