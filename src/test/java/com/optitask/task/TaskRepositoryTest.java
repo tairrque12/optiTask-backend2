@@ -28,7 +28,7 @@ public class TaskRepositoryTest {
     @Test
     void shouldSaveAndRetrieveTasksWithRobot(){
 
-        //TJIA
+
         Robot robot = new Robot("Optimus", "Heavy Lifting Robot");
         Robot savedRobot = robotRepository.save(robot);
 
