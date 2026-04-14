@@ -29,6 +29,4 @@ public class TaskController {
         Robot robot = robotService.getRobotById(robotId);
         return taskService.getTasksByRobot(robot);
     }
-
-
 }

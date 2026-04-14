@@ -48,10 +48,5 @@ public class ReservationServiceTest {
         //ASSERTION
         assertThat(saved.getTotalPrice()).isEqualByComparingTo(new BigDecimal("50.00"));
 
-
-
-
-
-
     }
 }

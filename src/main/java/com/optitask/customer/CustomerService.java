@@ -24,5 +24,9 @@ public class CustomerService {
     public Customer createCustomer(Customer customer) {
         return customerRepository.save(customer);
     }
+    public Customer getCustomerById(Long id) {
+        return customerRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Customer not found"));
+    }
 
 }
