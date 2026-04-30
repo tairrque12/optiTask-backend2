@@ -1,7 +1,8 @@
 package com.optitask.reservation;
 
-
 import com.optitask.customer.Customer;
+import com.optitask.task.Task;
+import com.optitask.task.TaskRepository;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -11,18 +12,27 @@ import java.util.List;
 public class ReservationService {
 
     private final ReservationRepository reservationRepository;
+    private final TaskRepository taskRepository;
 
-    public ReservationService(ReservationRepository reservationRepository) {
+    public ReservationService(ReservationRepository reservationRepository, TaskRepository taskRepository) {
         this.reservationRepository = reservationRepository;
+        this.taskRepository = taskRepository;
     }
 
-    public Reservation createReservation(Reservation reservation){
-        BigDecimal totalPrice = reservation.getTask().getBasePrice()
-                //MULTIPLY HOURLY PRICE BY THE DURATION
+    public Reservation createReservation(Reservation reservation) {
+        // FETCH FULL TASK FROM DB SO WE HAVE THE BASE PRICE
+        Task fullTask = taskRepository.findById(reservation.getTask().getId())
+                .orElseThrow(() -> new RuntimeException("Task not found"));
+        reservation.setTask(fullTask);
+
+        // MULTIPLY HOURLY PRICE BY THE DURATION
+        BigDecimal totalPrice = fullTask.getBasePrice()
                 .multiply(BigDecimal.valueOf(reservation.getDuration()));
-        //TAKE THE TOTAL PRICE AND SET IT TO RESERVATION SO THAT RESERVATION KNOWS TOTAL PRICE
+
+        // SET TOTAL PRICE ON RESERVATION
         reservation.setTotalPrice(totalPrice);
-        //HANDS THE COMPLETED RESERVATION TO THE REPO
+
+        // SAVE AND RETURN
         return reservationRepository.save(reservation);
     }
 
@@ -35,5 +45,4 @@ public class ReservationService {
     public void deleteReservation(Long id) {
         reservationRepository.deleteById(id);
     }
-
 }

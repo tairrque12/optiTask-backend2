@@ -43,7 +43,8 @@ public class ReservationRepositoryTest {
         Task savedTask = taskRepository.save(task);
 
         //FAKE DATA FOR CUSTOMER
-        Customer customer = new Customer("Tairrque", "Baker", "tbaker1312@gmail.com");
+        String email = "test_" + System.currentTimeMillis() + "@gmail.com";
+        Customer customer = new Customer("Tairrque", "Baker", email);
         Customer savedCustomer = customerRepository.save(customer);
 
         //FAKE DATA FOR RESERVATION
@@ -58,7 +59,7 @@ public class ReservationRepositoryTest {
         assertThat(savedReservation.getTotalPrice()).isEqualByComparingTo(new BigDecimal("50.00"));
         assertThat(savedReservation.getCustomer().getFirstName()).isEqualTo("Tairrque");
         assertThat(savedReservation.getCustomer().getLastName()).isEqualTo("Baker");
-        assertThat(savedReservation.getCustomer().getEmail()).isEqualTo("tbaker1312@gmail.com");
+        assertThat(savedReservation.getCustomer().getEmail()).isEqualTo(email);
 
 
     }

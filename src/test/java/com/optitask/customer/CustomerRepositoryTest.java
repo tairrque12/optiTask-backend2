@@ -19,12 +19,13 @@ public class CustomerRepositoryTest {
     @Test
     //Customer Creates Account Customer Saved
     void shouldSaveAndRetrieveCustomer(){
-        Customer customer = new Customer("Tairrque", "Baker", "tbaker1312@gmail.com");
+        String email = "test_" + System.currentTimeMillis() + "@gmail.com";
+        Customer customer = new Customer("Tairrque", "Baker", email);
         Customer saved = customerRepository.save(customer);
 
         assertThat(saved.getId()).isNotNull();
         assertThat(saved.getFirstName()).isEqualTo("Tairrque");
         assertThat(saved.getLastName()).isEqualTo("Baker");
-        assertThat(saved.getEmail()).isEqualTo("tbaker1312@gmail.com");
+        assertThat(saved.getEmail()).isEqualTo(email);
     }
 }
