@@ -29,4 +29,7 @@ public class TaskService {
         // RETURNS WHAT ROBOT REPO GIVES BACK.
         return taskRepository.findByRobot(robot);
     }
+    public List<Task> getAllTasks() {
+        return taskRepository.findAll();
+    }
 }

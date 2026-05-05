@@ -29,4 +29,8 @@ public class TaskController {
         Robot robot = robotService.getRobotById(robotId);
         return taskService.getTasksByRobot(robot);
     }
+    @GetMapping
+    public List<Task> getAllTasks() {
+        return taskService.getAllTasks();
+    }
 }

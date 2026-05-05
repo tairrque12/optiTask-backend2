@@ -31,5 +31,10 @@ public class CustomerService {
     public List<Customer>getAllCustomers(){
         return customerRepository.findAll();
     }
+    //GETTING CUSTOMER BY EMAIL - MANAGE RESERVATION
+    public Customer getCustomerByEmail(String email){
+        return customerRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Customer Not Found"));
+    }
 
 }

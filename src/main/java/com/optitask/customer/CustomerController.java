@@ -13,13 +13,21 @@ public class CustomerController {
     public CustomerController(CustomerService customerService){
         this.customerService = customerService;
     }
+
     @PostMapping
     public Customer createCustomer(@RequestBody Customer customer){
         return customerService.createCustomer(customer);
     }
+
     @GetMapping
     public List<Customer>getAllCustomers(){
         return customerService.getAllCustomers();
+    }
+
+    //GET CUSTOMER BY EMAIL ON MANAGE RESERVATION
+    @GetMapping("/email/{email}")
+    public Customer getCustomerByEmail(@PathVariable String email){
+        return customerService.getCustomerByEmail(email);
     }
 
 }
