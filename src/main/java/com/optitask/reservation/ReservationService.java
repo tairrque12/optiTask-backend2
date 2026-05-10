@@ -45,4 +45,17 @@ public class ReservationService {
     public void deleteReservation(Long id) {
         reservationRepository.deleteById(id);
     }
+    public Reservation updateReservation(Long id, ReservationUpdateRequest request) {
+        Reservation reservation = reservationRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Reservation not found"));
+
+        reservation.setLocation(request.getLocation());
+        reservation.setDuration(request.getDuration());
+
+        BigDecimal newTotal = reservation.getTask().getBasePrice()
+                .multiply(BigDecimal.valueOf(request.getDuration()));
+        reservation.setTotalPrice(newTotal);
+
+        return reservationRepository.save(reservation);
+    }
 }
